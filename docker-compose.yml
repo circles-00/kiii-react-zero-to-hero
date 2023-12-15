@@ -1,0 +1,74 @@
+version: "3"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_GOOGLE_CLIENT_ID: ${REACT_APP_GOOGLE_CLIENT_ID}
+        REACT_APP_GITHUB_CLIENT_ID: ${REACT_APP_GITHUB_CLIENT_ID}
+        REACT_APP_DISCORD_INVITE_URL: ${REACT_APP_DISCORD_INVITE_URL}
+        DB_USER: ${DB_USER}
+        DB_PASSWORD: ${DB_PASSWORD}
+        DB_HOST: ${DB_HOST}
+        DB_PORT: ${DB_PORT}
+        DB_DATABASE: ${DB_DATABASE}
+        RUN_MIGRATIONS: ${RUN_MIGRATIONS}
+        JWT_SECRET: ${JWT_SECRET}
+        GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+        GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+        GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID}
+        GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET}
+        GENERATE_SOURCEMAP: ${GENERATE_SOURCEMAP}
+        MAIL_HOST: ${MAIL_HOST}
+        MAIL_USER: ${MAIL_USER}
+        MAIL_PASSWORD: ${MAIL_PASSWORD}
+        MAIL_APP_PASSWORD: ${MAIL_APP_PASSWORD}
+        MODE: ${MODE}
+        NODE_ENV: ${NODE_ENV}
+        PORT_NUMBER: ${PORT_NUMBER}
+    image: react-zero-to-hero
+    container_name: react-zero-to-hero-${BRANCH_NAME}
+    environment:
+      - DB_USER
+      - DB_PASSWORD
+      - DB_HOST
+      - DB_PORT
+      - DB_DATABASE
+      - RUN_MIGRATIONS
+      - JWT_SECRET
+      - GOOGLE_CLIENT_ID
+      - REACT_APP_GOOGLE_CLIENT_ID
+      - GOOGLE_CLIENT_SECRET
+      - GITHUB_CLIENT_ID
+      - GITHUB_CLIENT_SECRET
+      - REACT_APP_GITHUB_CLIENT_ID
+      - GENERATE_SOURCEMAP
+      - MAIL_HOST
+      - MAIL_USER
+      - MAIL_PASSWORD
+      - MAIL_APP_PASSWORD
+      - MODE
+      - NODE_ENV
+      - PORT_NUMBER
+      - REACT_APP_DISCORD_INVITE_URL
+    restart: always
+    ports:
+      - "${PORT_NUMBER}:5000"
+    volumes:
+      - /opt/react-zero-to-hero/logs-${BRANCH_NAME}:/usr/src/react-zero-to-hero/logs:rw
+      - /opt/react-zero-to-hero/data-${BRANCH_NAME}:/usr/src/react-zero-to-hero/public:rw
+  db:
+    image: postgres:11.2-alpine
+    container_name: postgres-${BRANCH_NAME}
+    restart: always
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
+    volumes:
+      - ./react-zero-to-hero/init-postgres.sh:/docker-entrypoint-initdb.d/init-postgres.sh
+      - /opt/react-zero-to-hero-db-${BRANCH_NAME}:/var/lib/postgresql/data
+    ports:
+      - "${DB_PORT}:5432"
