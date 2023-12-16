@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import GithubOauthClient from 'github-oauth-ts'
 
-const { GITHUB_CLIENT_ID: clientId, GITHUB_CLIENT_SECRET: clientSecret } =
+const { BUHTIG_CLIENT_ID: clientId, BUHTIG_CLIENT_SECRET: clientSecret } =
   process.env
 
 @Injectable()

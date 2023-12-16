@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import LoginGithub from 'react-login-github'
 import { ThirdPartyLoginEnum } from '../../../constants/third.party.login.enum'
 
-const { REACT_APP_GITHUB_CLIENT_ID: githubClientId } = process.env
+const { REACT_APP_BUHTIG_CLIENT_ID: githubClientId } = process.env
 
 /**
  * @ component
