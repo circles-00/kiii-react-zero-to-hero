@@ -45,7 +45,7 @@ jobs:
         with:
           push: true
           tags: darknet00/kii-react-zero-to-hero:latest
-          secrets: |
+          build-args: |
             DB_USER=${{ secrets.DB_USER }}
             DB_PASSWORD=${{ secrets.DB_PASSWORD }}
             DB_HOST=${{ secrets.DB_HOST }}
