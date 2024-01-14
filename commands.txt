@@ -1,0 +1,5 @@
+k3d cluster create -s 1 -a 2 kiii-react-zero-to-hero
+# With a load balancer
+k3d cluster create -s 1 -a 2 kiii-react-zero-to-hero --no-lb
+kubectl apply -f ./deployment/secrets.yaml
+kubectl apply -f ./deployment/podspec.yaml
