@@ -1,3 +1,4 @@
+k3d cluster create real-time-chat-cluster -p "80:80@loadbalancer" -s 1 -a 2
 k3d cluster create -s 1 -a 2 kiii-react-zero-to-hero
 # With a load balancer
 k3d cluster create -s 1 -a 2 kiii-react-zero-to-hero --no-lb
