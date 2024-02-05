@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
+  namespace: kiii-react-zero-to-hero-ns
   name: kiii-react-zero-to-hero
   labels:
     app.kubernetes.io/name: kiii-react-zero-to-hero
