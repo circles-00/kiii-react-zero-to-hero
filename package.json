@@ -24,7 +24,9 @@
     "typeorm:migration:run": "npm run typeorm -- migration:run -d ormconfig.ts",
     "typeorm migration:create": "typeorm migration:create",
     "client-start": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client-start\" "
+    "dev": "concurrently \"npm run server\" \"npm run client-start\" ",
+    "local-start": "env-cmd -f .env.local npm run start",
+    "local-client": "env-cmd -f .env.local npm run client-start"
   },
   "resolutions": {
     "string-width": "4.2.3",
@@ -73,6 +75,7 @@
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "concurrently": "^7.2.2",
+    "env-cmd": "10.1.0",
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",

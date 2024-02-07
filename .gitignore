@@ -5,5 +5,5 @@ package-lock.json
 yarn.lock
 dist
 .vscode
-.env
+.env*
 comands.txt
